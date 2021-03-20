@@ -1,9 +1,12 @@
 package com.agt.subpkg;
 
+import java.util.Comparator;
+
 class Foo {
     static String name = "foo";
+    Comparator comparator;
 }
 
-public class Bar {
+class Bar {
     public static String name = "bar";
 }
