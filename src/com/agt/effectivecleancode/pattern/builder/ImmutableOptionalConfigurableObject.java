@@ -4,8 +4,9 @@ public class ImmutableOptionalConfigurableObject {
     private final String field1; // required
     private final int field2; // required
     private final String field3; // optional
-    private final Integer field4; // optional, >= 4 fields, bloated constructors
+    private final Integer field4; // optional, >= 4 fields, to cure bloated constructors
 
+    // favor static member classes over non-static, no need to ref Outer.this.xxx
     public static class Builder {
         private String field1;
         private int field2;
@@ -18,6 +19,7 @@ public class ImmutableOptionalConfigurableObject {
         }
 
         private Builder(ImmutableOptionalConfigurableObject object) {
+            // private members are accessible only from the top-level classes where it is declared
             this.field1 = object.field1;
             this.field2 = object.field2;
             this.field3 = object.field3;
@@ -58,6 +60,7 @@ public class ImmutableOptionalConfigurableObject {
     }
 
     private ImmutableOptionalConfigurableObject(Builder builder) {
+        // private members are accessible only from the top-level classes where it is declared
         this.field1 = builder.field1;
         this.field2 = builder.field2;
         this.field3 = builder.field3;
